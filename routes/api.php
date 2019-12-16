@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::middleware('cors')->post('save-data','GlobalController@store');
-Route::middleware('cors')->get('get-data/{name}','GlobalController@show');
+Route::post('save-data','GlobalController@store');
+Route::get('get-data/{name}','GlobalController@show');
