@@ -14,7 +14,7 @@ class GlobalController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -50,9 +50,9 @@ class GlobalController extends Controller
      * @param \App\GlobalC $GlobalC
      * @return \Illuminate\Http\Response
      */
-    public function show(GlobalC $GlobalC)
+    public function show($name)
     {
-        //
+        return $name;
     }
 
     /**
