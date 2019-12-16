@@ -38,7 +38,7 @@ return [
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
-            'database' => env('DB_DATABASE', 'D:\\Usuário\\Desktop\\Projetos\\webservice_cbn\\database\\database.sqlite'),
+            'database' => env('DB_DATABASE','G:\\User\\Desktop\\Projetos\\cbnwebserver\\database\\database.sqlite'),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],

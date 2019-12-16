@@ -39,6 +39,8 @@ class GlobalController extends Controller
 
         if (count($dados) == 0) {
             $dados = GlobalC::create($request->all());
+        }else{
+           $dados = $dados->first()->setAttribute("data", $request->get("data"));
         }
 
         return $dados;
