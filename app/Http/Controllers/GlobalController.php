@@ -54,7 +54,10 @@ class GlobalController extends Controller
      */
     public function show($name)
     {
-        return $name;
+        $data = GlobalC::where('name', $name)->get();
+        if(count($data) <= 0)
+            return response()->json('{"ERROR":"INFORMAÇÃO NÃO ENCONTRADA"}', 404);
+        return $data;
     }
 
     /**
