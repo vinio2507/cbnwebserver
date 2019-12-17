@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\GlobalC;
 use Illuminate\Http\Request;
+use Psy\Util\Json;
 
 class GlobalController extends Controller
 {
@@ -37,13 +38,18 @@ class GlobalController extends Controller
     {
         $dados = GlobalC::where('name', $request->get('name'))->get();
 
+
         if (count($dados) == 0) {
             $dados = GlobalC::create($request->all());
-        }else{
-           $dados = $dados->first()->setAttribute("data", $request->get("data"));
+            return response()->json($dados, 201);
+
+        } else {
+            $dados = $dados->first();
+            $dados->data = $request->get("data");
+            $dados->save();
         }
 
-        return $dados;
+        return response()->json($dados, 200);
     }
 
     /**
@@ -55,7 +61,7 @@ class GlobalController extends Controller
     public function show($name)
     {
         $data = GlobalC::where('name', $name)->get();
-        if(count($data) <= 0)
+        if (count($data) <= 0)
             return response()->json('{"ERROR":"INFORMAÇÃO NÃO ENCONTRADA"}', 404);
         return $data;
     }

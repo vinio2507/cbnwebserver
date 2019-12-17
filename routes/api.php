@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('save-data','GlobalController@store');
-Route::get('get-data/{name}','GlobalController@show');
+Route::middleware('auth:api')->post('save-data','GlobalController@store');
+Route::middleware('auth:api')->get('get-data/{name}','GlobalController@show');
