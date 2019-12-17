@@ -17,10 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true, 'register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/token', function () {
-    return Auth::user()->createToken("deploy");
-});
