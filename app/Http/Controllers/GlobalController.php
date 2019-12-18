@@ -99,4 +99,8 @@ class GlobalController extends Controller
     {
         //
     }
+
+    public function connectionTest(){
+        return response("OK", 200);
+    }
 }
