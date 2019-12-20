@@ -13,10 +13,14 @@
 
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
+
+$rp = "/ws";
+
+
+Route::get($rp.'/', function () {
     return view('welcome');
 });
 
 Auth::routes(['verify' => true, 'register' => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get($rp.'/home', 'HomeController@index')->name('home');
