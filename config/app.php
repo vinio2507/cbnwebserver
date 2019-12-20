@@ -1,5 +1,67 @@
 <?php
 
+use App\Providers\AppServiceProvider;
+use App\Providers\EventServiceProvider;
+use App\Providers\RouteServiceProvider;
+use Barryvdh\Cors\ServiceProvider;
+use Illuminate\Auth\AuthServiceProvider;
+use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
+use Illuminate\Broadcasting\BroadcastServiceProvider;
+use Illuminate\Bus\BusServiceProvider;
+use Illuminate\Cache\CacheServiceProvider;
+use Illuminate\Cookie\CookieServiceProvider;
+use Illuminate\Database\DatabaseServiceProvider;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Encryption\EncryptionServiceProvider;
+use Illuminate\Filesystem\FilesystemServiceProvider;
+use Illuminate\Foundation\Providers\ConsoleSupportServiceProvider;
+use Illuminate\Foundation\Providers\FoundationServiceProvider;
+use Illuminate\Hashing\HashServiceProvider;
+use Illuminate\Mail\MailServiceProvider;
+use Illuminate\Notifications\NotificationServiceProvider;
+use Illuminate\Pagination\PaginationServiceProvider;
+use Illuminate\Pipeline\PipelineServiceProvider;
+use Illuminate\Queue\QueueServiceProvider;
+use Illuminate\Redis\RedisServiceProvider;
+use Illuminate\Session\SessionServiceProvider;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
+use Illuminate\Translation\TranslationServiceProvider;
+use Illuminate\Validation\ValidationServiceProvider;
+use Illuminate\View\ViewServiceProvider;
+
 return [
 
     /*
@@ -13,7 +75,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'CBN - Webservice'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +114,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://www.distribuidorcocacola.com.br'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -80,7 +142,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt-BR',
 
     /*
     |--------------------------------------------------------------------------
@@ -119,7 +181,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY', 'base64:FIlr+P3pp1PkhM7Kha6YHn40ACmVaIxs+g/nbJPTE0g='),
 
     'cipher' => 'AES-256-CBC',
 
