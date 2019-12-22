@@ -21,6 +21,9 @@ Route::get($rp.'/', function () {
     return view('welcome');
 });
 
-Auth::routes(['verify' => true, 'register' => false]);
+//Auth::routes(['verify' => true, 'register' => false]);
+Auth::routes();
 
 Route::get($rp.'/home', 'HomeController@index')->name('home');
+
+

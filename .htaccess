@@ -1,6 +1,13 @@
 RewriteEngine on
+
 RewriteCond %{HTTP:Authorization} .
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-RewriteCond %{REQUEST_URI} !^public
-RewriteRule ^(.*)$ public/$1 [L]
+RewriteBase /ws/
+RewriteCond %{THE_REQUEST} ^GET\ /public/ [NC]
+RewriteRule ^public/(.*)$ $1 [L,R=301,NE]
+RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
+
+
+#RewriteCond %{REQUEST_URI} !^public
+#RewriteRule ^(.*)$ public/$1 [L]
