@@ -10,20 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 use Illuminate\Support\Facades\Auth;
 
-
-$rp = "/ws";
-
-
-Route::get($rp.'/', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
-//Auth::routes(['verify' => true, 'register' => false]);
-Auth::routes();
+Auth::routes(['verify' => true, 'register' => false]);
+//Auth::routes();
 
-Route::get($rp.'/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 
