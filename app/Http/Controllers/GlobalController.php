@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\GlobalC;
 use Illuminate\Http\Request;
-use Psy\Util\Json;
 
 class GlobalController extends Controller
 {
@@ -100,7 +99,15 @@ class GlobalController extends Controller
         //
     }
 
-    public function connectionTest(){
+    public function connectionTest()
+    {
         return response("OK", 200);
+    }
+
+    public function generateFile(Request $request)
+    {
+        $type = $request->get('type');
+
+        return response($type, 200);
     }
 }
