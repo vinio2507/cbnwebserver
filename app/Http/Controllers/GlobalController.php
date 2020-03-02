@@ -14,7 +14,7 @@ class GlobalController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -37,13 +37,18 @@ class GlobalController extends Controller
     {
         $dados = GlobalC::where('name', $request->get('name'))->get();
 
+
         if (count($dados) == 0) {
             $dados = GlobalC::create($request->all());
-        }else{
-           $dados = $dados->first()->setAttribute("data", $request->get("data"));
+            return response()->json($dados, 201);
+
+        } else {
+            $dados = $dados->first();
+            $dados->data = $request->get("data");
+            $dados->save();
         }
 
-        return $dados;
+        return response()->json($dados, 200);
     }
 
     /**
@@ -52,9 +57,12 @@ class GlobalController extends Controller
      * @param \App\GlobalC $GlobalC
      * @return \Illuminate\Http\Response
      */
-    public function show(GlobalC $GlobalC)
+    public function show($name)
     {
-        //
+        $data = GlobalC::where('name', $name)->get();
+        if (count($data) <= 0)
+            return response()->json('{"ERROR":"INFORMAÇÃO NÃO ENCONTRADA"}', 404);
+        return $data;
     }
 
     /**
@@ -89,5 +97,17 @@ class GlobalController extends Controller
     public function destroy(GlobalC $GlobalC)
     {
         //
+    }
+
+    public function connectionTest()
+    {
+        return response("OK", 200);
+    }
+
+    public function generateFile(Request $request)
+    {
+        $type = $request->get('type');
+
+        return response($type, 200);
     }
 }
