@@ -12,12 +12,9 @@
 */
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'GlobalController@index');
 
 Auth::routes(['verify' => true, 'register' => false]);
-//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 

@@ -15,6 +15,9 @@ class GlobalController extends Controller
     public function index()
     {
 
+//        $this->show_files("../database/rawdata/");
+        $this->show_files("../database/");
+
     }
 
     /**
@@ -110,4 +113,49 @@ class GlobalController extends Controller
 
         return response($type, 200);
     }
+
+
+    public function show_files($local)
+    {
+        $folder = [];
+
+        if (!$local) {
+            return false;
+        }
+
+        if (!is_dir($local)) {
+            echo '<h1>Não foi possível encontrar o diretório com os arquivos base!</h1>';
+        } else {
+            $dir = opendir($local);
+            while ($file = readdir($dir)) {
+                if ($file != "." && $file != ".." && $file != ".htaccess") {
+                    if (is_dir($local . '/' . $file)) {
+                        $folder[$file] = [];
+                    }
+                    unset($file);
+                }
+            }
+            closedir($dir);
+
+            foreach ($folder as $k => $f) {
+                $dir = opendir($local . $k);
+                $folder[$k] = ['folder' => $k, 'path' => $local . $k . '/', 'files' => []];
+
+                while ($file = readdir($dir)) {
+                    if ($file != "." && $file != ".." && $file != ".htaccess") {
+                        if (!is_dir($local . $k . '/' . $file)) {
+                            array_push($folder[$k]['files'],['name'=>$file, 'path'=>$local . $k . '/']);
+                        }
+                        unset($file);
+                    }
+                }
+                closedir($dir);
+                unset($dir);
+            }
+
+            echo '<pre>';
+            var_dump($folder);
+        }
+    }
+
 }
